@@ -1,19 +1,93 @@
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-    <meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vẽ Đồ Thị Hàm Số</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    canvas {
+      max-width: 800px;
+      margin: auto;
+    }
+    input {
+      padding: 6px;
+      font-size: 16px;
+      width: 300px;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vẽ Đồ Thị Hàm Số Oxy</h1>
+  <p>Nhập hàm số theo biến x (ví dụ: <code>Math.sin(x)</code>, <code>x*x</code>, <code>Math.exp(x)</code>)</p>
+  <input type="text" id="functionInput" placeholder="Nhập hàm số ở đây (ví dụ: x*x)" />
+  <button onclick="drawGraph()">Vẽ</button>
 
-    <style>
-        a {
-            font-size: 40px;
+  <canvas id="graphCanvas" width="800" height="400"></canvas>
+
+  <script>
+    let chart; // để giữ biểu đồ hiện tại
+
+    function drawGraph() {
+      const funcInput = document.getElementById("functionInput").value;
+      const xValues = [];
+      const yValues = [];
+
+      for (let x = -10; x <= 10; x += 0.1) {
+        xValues.push(x);
+        try {
+          const y = eval(funcInput);
+          yValues.push(y);
+        } catch (error) {
+          alert("Lỗi trong hàm số: " + error.message);
+          return;
         }
-    </style>
+      }
 
-    </head>
-    <body>
-        <h1> Chào mừng các bạn vì đã đến với trang web lktn.github.io</h1>
-        <a href="https://pbs.twimg.com/profile_images/1432393876703100928/ytr1i0D3_400x400.jpg" target="_blank">
-            --> link
-        </a>
-    </body>
+      // Nếu đã có chart thì hủy trước
+      if (chart) chart.destroy();
+
+      const ctx = document.getElementById("graphCanvas").getContext("2d");
+      chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            label: `y = ${funcInput}`,
+            data: yValues,
+            borderColor: "blue",
+            borderWidth: 2,
+            fill: false,
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'x'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'y'
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
 </html>
