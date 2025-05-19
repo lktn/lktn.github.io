@@ -1,93 +1,35 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vẽ Đồ Thị Hàm Số</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
-    }
-    canvas {
-      max-width: 800px;
-      margin: auto;
-    }
-    input {
-      padding: 6px;
-      font-size: 16px;
-      width: 300px;
-    }
-    button {
-      padding: 6px 12px;
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+
+    <!-- Đây là chỗ đúng để đặt MathJax -->
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <style>
+        p {
+            font-size: 25px; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
-  <h1>Vẽ Đồ Thị Hàm Số Oxy</h1>
-  <p>Nhập hàm số theo biến x (ví dụ: <code>Math.sin(x)</code>, <code>x*x</code>, <code>Math.exp(x)</code>)</p>
-  <input type="text" id="functionInput" placeholder="Nhập hàm số ở đây (ví dụ: x*x)" />
-  <button onclick="drawGraph()">Vẽ</button>
-
-  <canvas id="graphCanvas" width="800" height="400"></canvas>
-
-  <script>
-    let chart; // để giữ biểu đồ hiện tại
-
-    function drawGraph() {
-      const funcInput = document.getElementById("functionInput").value;
-      const xValues = [];
-      const yValues = [];
-
-      for (let x = -10; x <= 10; x += 0.01) {
-        xValues.push(x);
-        try {
-          const y = eval(funcInput);
-          yValues.push(y);
-        } catch (error) {
-          alert("Lỗi trong hàm số: " + error.message);
-          return;
-        }
-      }
-
-      // Nếu đã có chart thì hủy trước
-      if (chart) chart.destroy();
-
-      const ctx = document.getElementById("graphCanvas").getContext("2d");
-      chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: xValues,
-          datasets: [{
-            label: `y = ${funcInput}`,
-            data: yValues,
-            borderColor: "blue",
-            borderWidth: 2,
-            fill: false,
-            tension: 0.1
-          }]
-        },
-        options: {
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'x'
-              }
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'y'
-              }
-            }
-          }
-        }
-      });
-    }
-  </script>
+    <h1 style="font-size: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+        Cách giải phương trình bậc 4
+    </h1>
+    <p> \(ax^4+bx^3+cx^2+dx+e=0\) </p>
+    <p> \(\Leftrightarrow x^4+{b\over a}x^3+{c\over a}x^2+{d\over a}x+{e\over a}=0\) </p>
+    <p> Đặt \(x=y-\frac{b}{4a}\) phương trình trở thành</p>
+    <p> \(\left(y-{b\over4a}\right)^4+{b\over a}\left(y-{b\over4a}\right)^3+{c\over a}\left(y-{b\over4a}\right)^2+{d\over a}\left(y-{b\over4a}\right)+{e\over a}=0\) </p>
+    <p> \(\Leftrightarrow y^4 - \frac{b}{a} y^3 + \frac{6b^2}{16a^2} y^2 - \frac{4b^3}{64a^3} y + \frac{b^4}{256a^4} + \frac{b}{a} \left( y^3 - \frac{3b}{4a} y^2 + \frac{3b^2}{16a^2} y - \frac{b^3}{64a^3} \right) + \frac{c}{a} \left( y^2 - \frac{b}{2a} y + \frac{b^2}{16a^2} \right) + \frac{d}{a} \left( y - \frac{b}{4a} \right) + \frac{e}{a} = 0\) </p>
+    <p> \(\Leftrightarrow y^4 - \frac{b}{a}y^3 + \frac{3b^2}{8a^2}y^2 - \frac{b^3}{16a^3}y + \frac{b^4}{256a^4} + \frac{b}{a}y^3 - \frac{3b^2}{4a^2}y^2 + \frac{3b^3}{16a^3}y - \frac{b^4}{64a^4} + \frac{c}{a}y^2 - \frac{bc}{2a^2}y + \frac{b^2c}{16a^3} + \frac{d}{a}y - \frac{bd}{4a^2} + \frac{e}{a} = 0 \) </p>
+    <p> \(\Leftrightarrow y^4 + \left(\frac{c}{a}-\frac{3b^2}{8a^2} \right)y^2 + \left( \frac{b^3}{8a^3} - \frac{bc}{2a^2} + \frac{d}{a} \right)y + \frac{b^2c}{16a^3} - \frac{bd}{4a^2} -\frac{3b^4}{256a^4} + \frac{e}{a} = 0 \) </p>
+    <p> \(\Leftrightarrow y^4+\left(\frac{8ac-3b^2}{8a^2}\right)y^2+\left(\frac{b^3-4abc+8a^2d}{8a^3}\right)y+\frac {16ab^2c-64a^2bd-3b^4+256a^3e}{256a^4}=0 \)</p>
+    <p> Đặt \( p=\frac{8ac-3b^2}{8a^2},\ q=\frac{b^3-4abc+8a^2d}{8a^3},\ r=\frac {16ab^2c-64a^2bd-3b^4+256a^3e}{256a^4} \) ta được </p>
+    <p> \(y^4+py^2+qy+r=0\) </p>
+    <p> \(\Leftrightarrow y^4+py^2=-qy-r \) </p>
+    <p> \(\Leftrightarrow y^4+2py^2+p^2=py^2+p^2-qy-r \) </p>
+    <p> \(\Leftrightarrow (y^2+p)^2=py^2+p^2-qy-r \) </p>
 </body>
 </html>
