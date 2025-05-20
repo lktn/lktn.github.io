@@ -7,11 +7,13 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
     <style>
+        body {background-color: #000000;}
+
         p {
-            font-size: 20px; 
+            font-size: 20px; color: white;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
-        h {
+        h { color: white;
             font-size: 30px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
     </style>
@@ -24,7 +26,7 @@
 	</span>
     </a>
     <br>
-    <h> Cách giải phương trình bậc 2</h>
+    <h> Cách giải phương trình bậc 2 </h>
     <p> \(\quad\ ax^2+bx+c=0\ (a\neq0)\) </p>
     <p> \(\Leftrightarrow ax^2+bx=-c\) </p>
     <p> \(\Leftrightarrow x^2+\dfrac{b}ax=-\dfrac{c}a\)</p>
@@ -36,7 +38,8 @@
     <p> \(\Leftrightarrow x+\dfrac{b}{2a}=\pm\dfrac{\sqrt{b^2-4ac}}{2a}\) </p>
     <p> \(\Leftrightarrow x=-\dfrac{b}{2a}\pm\dfrac{\sqrt{b^2-4ac}}{2a}\) </p>
     <p> \(\Leftrightarrow x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}\) </p>
-    <h> Cách giải phương trình bậc 3</h>
+
+    <h> Cách giải phương trình bậc 3 </h>
     <p> \(\quad\ ax^3+bx^2+cx+d=0\ (a\neq0)\) </p>
     <p> \(\Leftrightarrow x^3+\dfrac{b}{a}x^2+\dfrac{c}ax+\dfrac{d}a=0\) </p>
     <p> Đặt \(x=y-\dfrac{b}{3a}\) phương trình trở thành:</p>
@@ -59,8 +62,10 @@
     <p> \(v^3=-\dfrac{q}2-\sqrt{\dfrac{q^2}4+\dfrac{p^3}{27}}\Leftrightarrow v=\sqrt[3]{-\dfrac{q}2-\sqrt{\dfrac{q^2}4+\dfrac{p^3}{27}}}\) </p>
     <p> \(\quad\ y=\sqrt[3]{-\dfrac{q}2+\sqrt{\dfrac{q^2}4+\dfrac{p^3}{27}}}+\sqrt[3]{\dfrac{q}2-\sqrt{\dfrac{q^2}4+\dfrac{p^3}{27}}}\quad\) vì \(y=u+v\) </p>
     <p> \(\Leftrightarrow y=\sqrt[3]{-\dfrac{q}2+\sqrt{\left(\dfrac{q}2\right)^2+\left(\dfrac{p}3\right)^3}}+\sqrt[3]{-\dfrac{q}2-\sqrt{\left(\dfrac{q}2\right)^2+\left(\dfrac{p}3\right)^3}}\) </p>
-    <p> \(\Leftrightarrow y=\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}+\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}+\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}-\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}\) </p>
-    <p> \(\Leftrightarrow x=\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}+\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}+\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}-\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}-\dfrac{b}{3a}\) </p>
+    <p> \(\Leftrightarrow y=\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}+\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}\)</p>
+    <p> \(\quad +\ \sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}-\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}\) </p>
+    <p> \(\Leftrightarrow x=\sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}+\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}+\)</p>
+    <p> \(\quad\ \sqrt[3]{\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}-\sqrt{\left(\dfrac{-b^3}{27a^3}+\dfrac{bc}{6a^2}-\dfrac{d}{2a}\right)^2+\left(\dfrac{c}{3a}-\dfrac{b^2}{9a^2}\right)^3}}-\dfrac{b}{3a}\) </p>
 
     <h> Cách giải phương trình bậc 4 </h>
     <p> \(\quad\ ax^4+bx^3+cx^2+dx+e=0\ (a\neq0)\) </p>
@@ -78,8 +83,10 @@
     <p> \(\Leftrightarrow (y^2+p)^2=py^2+p^2-qy-r \) </p>
     <p> \(\Leftrightarrow\cdots\) </p>
     <h> Cách giải phương trình bậc 5 </h>
-    <p> \(ax^5+bx^4+cx^3+dx^2+ex+f=0\)</p> 
+    <p> \(\quad\ ax^5+bx^4+cx^3+dx^2+ex+f=0\ (a\neq0)\)</p>
     <p> \(\Leftrightarrow x^5+\dfrac{b}ax^4+\dfrac{c}ax^3+\dfrac{d}ax^2+\dfrac{e}ax+\dfrac{f}a=0 \) </p>
+    <p> Đặt \(x=y-\dfrac{b}{5a}\) phương trình trở thành:</p>
+    <p> \(\quad\ \left(y-\dfrac{b}{5a}\right)^5+\dfrac{b}a\left(y-\dfrac{b}{5a}\right)^4+\dfrac{c}a\left(y-\dfrac{b}{5a}\right)^3+\dfrac{d}a\left(y-\dfrac{b}{5a}\right)^2+\dfrac{e}a\left(y-\dfrac{b}{5a}\right)+\dfrac{f}a=0\)</p>
     <a href="https://th.bing.com/th/id/OIP.xPo35gCAc1Lgit9VyPiE9AHaDy?rs=1&pid=ImgDetMain" target="" style="font-size: 30px"> 
         link
     </a>
