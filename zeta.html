@@ -3,55 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dark LaTeX Editor</title>
+  <title>LaTeX Editor</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script"
-    async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
   <style>
     body {
       margin: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #121212;
+      color: #ffffff;
       display: flex;
       height: 100vh;
-      background-color: #121212;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
     }
     textarea {
       width: 50%;
-      height: 100%;
-      background-color: #1e1e1e;
-      color: white;
+      background: #1e1e1e;
+      color: #ffffff;
       border: none;
-      padding: 20px;
-      font-size: 18px;
+      padding: 1rem;
+      font-size: 1.2rem;
       resize: none;
       outline: none;
     }
     #output {
       width: 50%;
-      padding: 20px;
+      padding: 1rem;
       overflow-y: auto;
-      background-color: #121212;
-      font-size: 20px;
+      border-left: 1px solid #333;
     }
   </style>
 </head>
 <body>
-  <textarea id="input" placeholder="Gõ công thức LaTeX ở đây...">\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}</textarea>
+  <textarea id="input" placeholder="Nhập công thức LaTeX ở đây...">\int_0^1 x^2 \, dx</textarea>
   <div id="output"></div>
 
   <script>
-    const input = document.getElementById("input");
-    const output = document.getElementById("output");
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
 
-    function renderMath() {
-      output.innerHTML = `\$begin:math:display$ ${input.value} \\$end:math:display$`;
+    function render() {
+      output.innerHTML = '\\[' + input.value + '\\]';
       MathJax.typesetPromise();
     }
 
-    input.addEventListener("input", renderMath);
-    window.onload = renderMath;
+    input.addEventListener('input', render);
+
+    window.onload = render;
   </script>
 </body>
 </html>
