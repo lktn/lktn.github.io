@@ -1,56 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>LaTeX Editor</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #121212;
-      color: #ffffff;
-      display: flex;
+      font-family: sans-serif;
+      background-color: #1e1e1e;
+      color: white;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    #container {
+      display: flex;
+      height: 100%;
+    }
+
+    #editor-pane, #preview-pane {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    #editor-pane {
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #preview-pane {
+      background-color: #222;
+    }
+
     textarea {
-      width: 50%;
-      background: #1e1e1e;
-      color: #ffffff;
+      flex: 1;
+      background: #000;
+      color: #0f0;
+      font-size: 16px;
+      padding: 10px;
       border: none;
-      padding: 1rem;
-      font-size: 1.2rem;
       resize: none;
-      outline: none;
+      font-family: monospace;
     }
-    #output {
-      width: 50%;
-      padding: 1rem;
-      overflow-y: auto;
-      border-left: 1px solid #333;
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    h2 {
+      margin-top: 0;
     }
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-  <textarea id="input" placeholder="Nhập công thức LaTeX ở đây...">\int_0^1 x^2 \, dx</textarea>
-  <div id="output"></div>
+  <div id="container">
+    <div id="editor-pane">
+      <h2>LaTeX Input</h2>
+      <textarea id="editor" placeholder="Type LaTeX here...">\int_0^\infty x^2 e^{-x} dx</textarea>
+      <button id="download">Download PDF</button>
+    </div>
+    <div id="preview-pane">
+      <h2>Preview</h2>
+      <div id="output">Loading...</div>
+    </div>
+  </div>
 
   <script>
-    const input = document.getElementById('input');
+    const editor = document.getElementById('editor');
     const output = document.getElementById('output');
+    const downloadBtn = document.getElementById('download');
 
-    function render() {
-      output.innerHTML = '\\[' + input.value + '\\]';
-      MathJax.typesetPromise();
+    function renderMath() {
+      output.innerHTML = `\$begin:math:display$\\n${editor.value}\\n\\$end:math:display$`;
+      MathJax.typesetPromise([output]);
     }
 
-    input.addEventListener('input', render);
+    editor.addEventListener('input', renderMath);
+    window.onload = renderMath;
 
-    window.onload = render;
+    downloadBtn.onclick = () => {
+      const opt = {
+        margin: 1,
+        filename: 'latex-output.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(output).save();
+    };
   </script>
 </body>
 </html>
