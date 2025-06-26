@@ -3,107 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>LaTeX Editor</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f0f0;
     }
-
-    #container {
-      display: flex;
-      height: 100%;
-    }
-
-    #editor-pane, #preview-pane {
-      flex: 1;
-      padding: 20px;
-      box-sizing: border-box;
-      overflow: auto;
-    }
-
-    #editor-pane {
-      background-color: #111;
-      display: flex;
-      flex-direction: column;
-    }
-
-    #preview-pane {
-      background-color: #222;
-    }
-
     textarea {
-      flex: 1;
-      background: #000;
-      color: #0f0;
-      font-size: 16px;
+      width: 100%;
+      height: 150px;
+      font-size: 18px;
       padding: 10px;
-      border: none;
-      resize: none;
-      font-family: monospace;
+      box-sizing: border-box;
     }
-
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #333;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #555;
-    }
-
-    h2 {
-      margin-top: 0;
+    #output {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      min-height: 50px;
     }
   </style>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-  <div id="container">
-    <div id="editor-pane">
-      <h2>LaTeX Input</h2>
-      <textarea id="editor" placeholder="Type LaTeX here...">\int_0^\infty x^2 e^{-x} dx</textarea>
-      <button id="download">Download PDF</button>
-    </div>
-    <div id="preview-pane">
-      <h2>Preview</h2>
-      <div id="output">Loading...</div>
-    </div>
-  </div>
+  <h1>🧮 LaTeX Live Editor</h1>
+  <textarea id="input" placeholder="Nhập công thức LaTeX ở đây...">E = mc^2</textarea>
+  <div id="output"></div>
 
   <script>
-    const editor = document.getElementById('editor');
+    const input = document.getElementById('input');
     const output = document.getElementById('output');
-    const downloadBtn = document.getElementById('download');
 
-    function renderMath() {
-      output.innerHTML = `\$begin:math:display$\\n${editor.value}\\n\\$end:math:display$`;
+    function updateMath() {
+      output.innerHTML = '\\[' + input.value + '\\]';
       MathJax.typesetPromise([output]);
     }
 
-    editor.addEventListener('input', renderMath);
-    window.onload = renderMath;
-
-    downloadBtn.onclick = () => {
-      const opt = {
-        margin: 1,
-        filename: 'latex-output.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(output).save();
-    };
+    input.addEventListener('input', updateMath);
+    window.onload = updateMath;
   </script>
 </body>
 </html>
